@@ -1,0 +1,68 @@
+#include <iostream>
+#include <iomanip>
+#include <limits> 
+
+int main() {
+          
+    int num_games = 0;  
+    double game_price = 0.0;           
+    double total_revenue = 0.0;     
+    int premium_count = 0;         
+    const double PREMIUM_THRESHOLD = 3000.00; 
+    std::cout << " Online Gaming Store Revenue Calculator " << std::endl;
+    
+
+    while (true) {
+        std::cout << "Enter the total number of games sold (N): ";
+        if (std::cin >> num_games && num_games >= 0) {
+            break; 
+        } 
+        else {
+            std::cout << " Invalid input. Please enter a non-negative integer." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+
+    
+    for (int i = 1; i <= num_games; ++i) {
+        std::cout << "\n Game " << i <<  std::endl;
+
+        
+        while (true) {
+            std::cout << "Enter the price of Game " << i << ": ";
+            if (std::cin >> game_price && game_price >= 0.0) {
+                break; 
+            } else {
+                std::cout << " Invalid price. Please enter a non-negative number." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+        
+         
+        total_revenue += game_price; 
+        
+        
+        if (game_price > PREMIUM_THRESHOLD) { 
+            std::cout << " Category: Premium Game (Price > 3000)" << std::endl;
+            premium_count++; 
+        } else if (game_price == PREMIUM_THRESHOLD) {
+             std::cout << " Category: Threshold Game (Price = 3000)" << std::endl;
+        } else {
+            std::cout << " Category: Standard Game" << std::endl;
+        }
+    }
+
+  
+    
+    std::cout << "Total Games Processed: " << num_games << std::endl;
+    std::cout << "Total Premium Games: " << premium_count << std::endl;
+    
+    std::cout << std::fixed << std::setprecision(2); 
+    
+    std::cout << "Total Revenue Generated: $" << total_revenue  << std::endl;
+    
+    
+    return 0; 
+}
