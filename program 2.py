@@ -1,0 +1,1 @@
+print("C language is a powerful programming language.")
